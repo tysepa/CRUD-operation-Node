@@ -21,6 +21,7 @@ mongoose.connection.on('connected',()=>{
 app.use(express.json());
 import displRouter from "./routers/displ.js";
 
+
 app.listen(5000, ()=>{
     console.log('connection lisyen on 5000');
 })
