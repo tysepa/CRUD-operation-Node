@@ -11,9 +11,8 @@ app.use('/displ', displRouter)
 app.use('/blog', appRouter);
 app.use(bodyParser.json());
 
-
-
 const mongoURI =process.env.connectionDb;
+
 mongoose.connect( mongoURI,{
     useNewUrlParser: true,
      useUnifiedTopology: true
