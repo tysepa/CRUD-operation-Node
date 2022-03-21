@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import appRouter from "./swagger/app.js"
 dotenv.config();
 
+const port = process.env.PORT || 5000;
+
 const app = express();
 
 app.use('/displ', displRouter)
@@ -26,7 +28,7 @@ mongoose.connection.on('connected',()=>{
 app.use(express.json());
 import displRouter from "./routers/displ.js";
 
-app.listen(5000, ()=>{
-    
-    console.log('connection lisyen on 5000');
+app.listen(port, ()=>{
+
+    console.log(`connection lisyen on ${port}`);
 })
