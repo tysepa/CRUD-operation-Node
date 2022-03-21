@@ -28,5 +28,5 @@ import displRouter from "./routers/displ.js";
 
 
 app.listen(port, ()=>{
-    console.log('connection lisyen on 5000');
+    console.log(`connection lisyen on ${port}`);
 })
