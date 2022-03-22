@@ -5,7 +5,6 @@ import server from '../server.js'
 
 chai.should();
 chai.use(chaiHttp);
-// const app = Express()
 
 describe('Blogs API', ()=>{
 
@@ -20,9 +19,7 @@ describe('Blogs API', ()=>{
                 done();
                 })
         })
-    
-
-    
+        
         it("It should NOT GET all the blogs",(done)=>{
             chai.request(server)
                 .get("/api/")
