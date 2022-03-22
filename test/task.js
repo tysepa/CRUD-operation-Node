@@ -92,6 +92,9 @@ describe("POST /api/Blogs",()=>{
     });
 
     it("It should NOT POST a new blogs whithout The name property ",(done)=>{
+        const blog={
+            name: ''
+        }
         chai.request(server)
             .post("/displ")
             .send(blog)
