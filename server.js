@@ -9,18 +9,11 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-const port= process.env.PORT || 5000;
 
 app.use('/displ', displRouter)
 app.use('/blog', appRouter);
 app.use(bodyParser.json());
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> second
 const mongoURI =process.env.connectionDb;
 
 mongoose.connect( mongoURI,{
@@ -39,11 +32,7 @@ app.listen(port, ()=>{
     console.log(`connection lisyen on ${port}`);
 })
 
-<<<<<<< HEAD
 app.listen(port, ()=>{
     console.log(`connection lisyen on ${port}`);
 })
-=======
 export default app;
-//use env file
->>>>>>> second
