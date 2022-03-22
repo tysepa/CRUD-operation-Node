@@ -19,7 +19,7 @@ describe('Blogs API', ()=>{
                 done();
                 })
         })
-        
+
         it("It should NOT GET all the blogs",(done)=>{
             chai.request(server)
                 .get("/api/")
@@ -45,21 +45,22 @@ describe('Blogs API', ()=>{
 
 
     describe("GET /api/Blogs/:id",()=>{
-        it("It should GET a blogs",(done)=>{
+        it("It should NOT GET a blogs without use token",(done)=>{
             chai.request(server)
                 .get("/displ/:id")
                 .end((err, response)=>{
                     response.should.have.status(403);
                     response.body.should.be.a('object');
+                    response.text.should.be.eq("Forbidden");
                     
                 done();
                 });
         });
 
         it("It should GET a blogs",(done)=>{
-            const displ = "622a29797b16fce9b317ae05";
+            const hintAcc = process.env.tokenAccess;
             chai.request(server)
-                .get("/displ/:id" + displ)
+                .get("/displ/:id" + hintAcc)
                 .end((err, response)=>{
                     // response.should.have.status(200);
                     response.body.should.be.a('object');
@@ -67,5 +68,38 @@ describe('Blogs API', ()=>{
                 done();
                 });
         });
+    });
+});
+
+
+describe("POST /api/Blogs",()=>{
+    it("It should NOT POST a blogs whithout Token ",(done)=>{
+        const blog ={
+            name:"cred",
+            tech: "free",
+            sub:false
+        };
+        chai.request(server)
+            .post("/displ")
+            .send(blog)
+            .end((err, response)=>{
+                response.should.have.status(403);
+                response.body.should.be.a('object');
+                response.text.should.be.eq("Forbidden");
+                
+            done();
+            });
+    });
+
+    it("It should NOT POST a new blogs whithout The name property ",(done)=>{
+        chai.request(server)
+            .post("/displ")
+            .send(blog)
+            .end((err, response)=>{
+                response.should.have.status(400);
+                response.text.should.be.eq("Error");
+                
+            done();
+            });
     });
 });
