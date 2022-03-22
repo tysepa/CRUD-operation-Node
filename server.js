@@ -30,4 +30,3 @@ import displRouter from "./routers/displ.js";
 app.listen(port, ()=>{
     console.log(`connection lisyen on ${port}`);
 })
-//try use secure
