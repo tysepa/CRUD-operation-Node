@@ -26,7 +26,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 //Routes
 /**
  * @swagger
- * /Blogs:
+ * /api/Blogs:
  *  get:
  *    description: Use to request all blogs
  *    responses:
@@ -41,7 +41,7 @@ app.get('/api/blogs',(req, res)=>{
 
 /**
  * @swagger
- * /blog:
+ * /api/blog/:id:
  *  put:
  *    description: Use to update a blogs
  *    responses:
@@ -49,14 +49,14 @@ app.get('/api/blogs',(req, res)=>{
  *         description: A successful response
  */
 
- app.put('/api/blog',(req, res)=>{
+ app.put('/api/blog/:id',(req, res)=>{
     console.log("request");
     res.status(201).send("successfully updated blog");
 });
 
 /**
  * @swagger
- * /blog:
+ * /blog/:id:
  *  delete:
  *    description: Use to delete a blog
  *    responses:
@@ -64,7 +64,7 @@ app.get('/api/blogs',(req, res)=>{
  *         description: A successful response
  */
 
- app.put('/:id',(req, res)=>{
+ app.delete('/blog/:id',(req, res)=>{
     console.log("request");
     res.status(200).send("successfully deleted blog");
 });

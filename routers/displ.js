@@ -4,7 +4,10 @@ const router = express.Router()
 import Blog from "../models/blog.js";
 
 router.use(express.json());
+
+
 // router.use(bodyParser.json());
+// not uses this
 
 import jwt from'jsonwebtoken';
 
