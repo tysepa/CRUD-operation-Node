@@ -9,6 +9,10 @@ tech:{
     type:String,
     required: true
 },
+photo:{
+    type:String,
+    required: true
+},
 sub:{
     type:Boolean,
     required: true,
