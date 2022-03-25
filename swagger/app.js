@@ -1,27 +1,10 @@
 import express from'express';
-import swaggerJsdoc from'swagger-jsdoc';
-import swaggerUi from'swagger-ui-express';
+
 
 const app =express();
 
 
-const swaggerOptions ={
-    swaggerDefinition:{
-        info:{
-            title:'Blog API',
-            description:'Blog API Information',
-            contact:{
-                name:'amazing Developer'
-            },
-            servers:["http://localhost:5000"]
-        }
 
-    },
-    //['.router/*.js']
-    apis:["app.js"]
-}
-const swaggerDocs = swaggerJsdoc(swaggerOptions);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //Routes
 /**
@@ -41,12 +24,20 @@ app.get('/api/blogs',(req, res)=>{
 
 /**
  * @swagger
- * /api/blog/:id:
+ * /api/blogs/:id:
  *  put:
- *    description: Use to update a blogs
- *    responses:
- *        '201':
- *         description: A successful response
+ *     tags:
+ *        - ID param
+ *     description: Put by id
+ *     parameters:
+ *          - name: id
+ *            description: id to Put by
+ *            in: path
+ *            type: integer
+ *            required: true
+ *     responses:
+ *         '200':
+ *            description: A success response
  */
 
  app.put('/api/blog/:id',(req, res)=>{
@@ -56,12 +47,20 @@ app.get('/api/blogs',(req, res)=>{
 
 /**
  * @swagger
- * /blog/:id:
+ * /api/blogs/:id:
  *  delete:
- *    description: Use to delete a blog
- *    responses:
- *        '200':
- *         description: A successful response
+ *     tags:
+ *        - ID param
+ *     description: Delete by id
+ *     parameters:
+ *          - name: id
+ *            description: id to delete by
+ *            in: path
+ *            type: integer
+ *            required: true
+ *     responses:
+ *         '200':
+ *            description: A success response
  */
 
  app.delete('/blog/:id',(req, res)=>{
@@ -84,6 +83,28 @@ app.get('/api/blogs',(req, res)=>{
     res.status(200).send("successfully created blog");
 });
 
+
+/**
+ * @swagger
+ * /api/blogs/:id:
+ *  get:
+ *     tags:
+ *        - ID param
+ *     description: Get by id
+ *     parameters:
+ *          - name: id
+ *            description: id to get by
+ *            in: path
+ *            type: integer
+ *            required: true
+ *     responses:
+ *         '200':
+ *            description: A success response
+ */
+ app.get('/api/blogs/:id',(req, res)=>{
+    console.log('request');
+    res.status(200).send("get blog on id")
+})
 
 
 

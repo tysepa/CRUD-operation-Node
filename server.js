@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import swaggerJsdoc from'swagger-jsdoc';
+import swaggerUi from'swagger-ui-express';
 import appRouter from "./swagger/app.js"
 dotenv.config();
 
@@ -11,6 +13,25 @@ const app = express();
 
 app.use(cors());
 const port= process.env.PORT || 5000;
+
+
+const swaggerOptions ={
+    swaggerDefinition:{
+        info:{
+            title:'Blog API',
+            description:'Blog API Information',
+            contact:{
+                name:'amazing Developer'
+            },
+            servers:["http://localhost:5000"]
+        }
+
+    },
+    //['.router/*.js']
+    apis:["./swagger/app.js"]
+}
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/displ', displRouter)
 app.use('/blog', appRouter);
