@@ -22,6 +22,8 @@ app.get('/api/blogs',(req, res)=>{
     res.status(200).send("blog results");
 });
 
+
+
 /**
  * @swagger
  * /api/blogs/:id:
@@ -44,6 +46,9 @@ app.get('/api/blogs',(req, res)=>{
     console.log("request");
     res.status(201).send("successfully updated blog");
 });
+
+
+
 
 /**
  * @swagger

@@ -41,6 +41,7 @@ router.post("/register", async (req, res) => {
     }
   });
   
+
   //login endpoint
   router.post("/login", async (req, res) => {
     try {
@@ -85,6 +86,8 @@ router.post("/register", async (req, res) => {
       res.status(403).json({ status: "error", code: "403" , error: "Forbidden", message: "Access denied. Please login" });
     }
   };
+
+
   router.post('/api/posts',verifyToken,(req, res)=>{
     jwt.verify(req.token, 'secretkey',(err, authData)=>{
         if(err){
@@ -98,6 +101,8 @@ router.post("/register", async (req, res) => {
         }
     })
 });
+
+
 router.get('/',verifyToken,(req, res)=>{
     jwt.verify(req.token, 'secretkey',async(err, authData)=>{
 
@@ -111,6 +116,8 @@ router.get('/',verifyToken,(req, res)=>{
     })
    
 })
+
+
 router.get('/:id',verifyToken,(req, res)=>{
     jwt.verify(req.token, 'secretkey',async(err, authData)=>{
 
@@ -124,6 +131,8 @@ router.get('/:id',verifyToken,(req, res)=>{
     })
    
 })
+
+
 
 router.post('/', verifyToken,(req, res)=>{
     jwt.verify(req.token, 'secretkey',async(err, authData)=>{
@@ -142,6 +151,8 @@ router.post('/', verifyToken,(req, res)=>{
         }
     })
 })
+
+
 router.delete('/:id', verifyToken,(req, res)=>{
     jwt.verify(req.token, 'secretkey',async(err, authData)=>{
 

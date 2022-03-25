@@ -33,6 +33,8 @@ const swaggerOptions ={
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+
+
 app.use('/displ', displRouter)
 app.use('/blog', appRouter);
 app.use(bodyParser.json());
