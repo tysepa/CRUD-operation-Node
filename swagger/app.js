@@ -13,7 +13,7 @@ const swaggerOptions ={
             contact:{
                 name:'amazing Developer'
             },
-            servers:["http://localhost:4000"]
+            servers:["http://localhost:5000"]
         }
 
     },
