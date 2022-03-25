@@ -6,7 +6,10 @@ import Blog from "../models/blog.js";
 import User from "../models/user.js"
 
 router.use(express.json());
+
+
 // router.use(bodyParser.json());
+// not uses this
 
 import jwt from'jsonwebtoken';
 

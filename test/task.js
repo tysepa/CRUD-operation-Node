@@ -1,6 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../server.js'
+// import  {response } from 'express';
+// import  Express  from 'express';
+import server from '../routers/displ.js'
 
 
 chai.should();
@@ -17,7 +19,8 @@ describe('Blogs API', ()=>{
                 .end((err, response)=>{
                     response.should.have.status(200);
                     response.body.should.be.a('object');
-                    
+
+                    response.body.length.should.be.equal(1);
                 done();
                 })
         })
