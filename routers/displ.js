@@ -1,9 +1,11 @@
 // import bodyParser from 'body-parser';
 import express from "express";
-import bcrypt from "bcrypt";
 const router = express.Router()
 import Blog from "../models/blog.js";
+import bcrypt from "bcrypt";
+import cors from"cors";
 import User from "../models/user.js"
+
 
 router.use(express.json());
 
@@ -14,13 +16,6 @@ router.use(express.json());
 import jwt from'jsonwebtoken';
 
 const app = express();
-
-router.get('/api',(req, res)=>{
-    res.json({
-        message:'welcome on the API'
-    });
-});
-
 
 router.post("/register", async (req, res) => {
     try {
@@ -66,26 +61,39 @@ router.post("/register", async (req, res) => {
     }
   });
   
-  
-  // Verify Token
-   export const verifyToken = (req, res, next) => {
-    const bearerHeader = req.headers["authorization"];
-    if (typeof bearerHeader !== "undefined") {
-      const bearer = bearerHeader.split(" ");
-      const bearerToken = bearer[1];
-      req.token = bearerToken;
-      jwt.verify(req.token, 'secretkey', (err, authData) => {
-        if (err) {
-          res.status(401).json({ status: "error", code: "401" , error: "Unauthorized", message: "Access denied. Please login" });
-        } else {
-          next();
-        }
-      });
-    } else {
-      // Forbidden
-      res.status(403).json({ status: "error", code: "403" , error: "Forbidden", message: "Access denied. Please login" });
+
+router.get('/api',(req, res)=>{
+    res.json({
+        message:'welcome on the API'
+    });
+});
+
+router.post('/api/login',(req, res)=>{
+    const user ={
+        email:'epa@gmail.com',
+        password:'Kigali'
     }
-  };
+
+    jwt.sign({user}, 'secretkey',(err, token)=>{
+        res.json({
+            token
+        });
+    });
+});
+
+function verifyToken(req, res, next){
+    const beareHeader = req.headers['authorization']; 
+     
+    if( typeof beareHeader !=='undefined'){
+       const bearer = beareHeader.split(' ');
+       const bearerToken = bearer[1];
+       req.token = bearerToken;
+       next();
+    }else{
+        res.sendStatus(403);
+    }
+}
+
 
 
   router.post('/api/posts',verifyToken,(req, res)=>{
@@ -151,6 +159,8 @@ router.post('/', verifyToken,(req, res)=>{
         }
     })
 })
+
+
 
 
 router.delete('/:id', verifyToken,(req, res)=>{

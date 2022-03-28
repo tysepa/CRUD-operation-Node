@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server.js",
-    "test": "mocha './test/**/*.js'",
-    "coverage": "nyc --reporter=lcov --repoter=text npm test",
+    "test": "nyc --all mocha './test/task.js'",
+    "coverage": "nyc --reporter=lcov --repoter=text  npm test",
     "coverage:badge": "coverage-badge-creator --config './.badge-coverage-config.json'",
     "make-badges": "istanbul-badges-readme",
     "start": "node server.js"
