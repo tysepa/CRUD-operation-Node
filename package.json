@@ -11,6 +11,10 @@
     "make-badges": "istanbul-badges-readme",
     "start": "node server.js"
   },
+  "nyc":{
+   "exclude":"routers start.js coverage"
+    
+  },
   "type": "module",
   "author": "Epa",
   "license": "ISC",

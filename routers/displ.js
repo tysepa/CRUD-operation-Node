@@ -3,7 +3,6 @@ import express from "express";
 const router = express.Router()
 import Blog from "../models/blog.js";
 import bcrypt from "bcrypt";
-import cors from"cors";
 import User from "../models/user.js"
 
 
